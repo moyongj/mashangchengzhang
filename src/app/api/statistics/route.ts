@@ -12,8 +12,8 @@ export async function GET(request: Request) {
     const action = url.searchParams.get('action');
 
     if (action === 'export') {
-      const studentName = url.searchParams.get('studentName');
-      const knowledgePoint = url.searchParams.get('knowledgePoint');
+      const studentName = url.searchParams.get('studentName') || undefined;
+      const knowledgePoint = url.searchParams.get('knowledgePoint') || undefined;
       const minScore = url.searchParams.get('minScore') ? parseInt(url.searchParams.get('minScore')!) : undefined;
       const maxScore = url.searchParams.get('maxScore') ? parseInt(url.searchParams.get('maxScore')!) : undefined;
 
@@ -70,8 +70,8 @@ export async function GET(request: Request) {
     }
 
     if (action === 'search') {
-      const studentName = url.searchParams.get('studentName');
-      const knowledgePoint = url.searchParams.get('knowledgePoint');
+      const studentName = url.searchParams.get('studentName') || undefined;
+      const knowledgePoint = url.searchParams.get('knowledgePoint') || undefined;
       const minScore = url.searchParams.get('minScore') ? parseInt(url.searchParams.get('minScore')!) : undefined;
       const maxScore = url.searchParams.get('maxScore') ? parseInt(url.searchParams.get('maxScore')!) : undefined;
 
