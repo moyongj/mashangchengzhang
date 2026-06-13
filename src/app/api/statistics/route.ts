@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getStatistics, getAllRecords, getKnowledgePointsStats, searchRecords, getAllStudentNames } from '@/lib/db';
+import { getStatistics, getAllRecords, getKnowledgePointsStats, searchRecords, getAllStudentNames, EvaluationRecord } from '@/lib/db';
 import * as XLSX from 'xlsx';
 
 export const runtime = 'nodejs';
@@ -35,7 +35,7 @@ export async function GET(request: Request) {
         fileName = '全部评价记录';
       }
 
-      const worksheetData = records.map(r => {
+      const worksheetData = records.map((r: EvaluationRecord) => {
         const date = new Date(r.created_at);
         const isValidDate = !isNaN(date.getTime());
         return {
@@ -81,7 +81,7 @@ export async function GET(request: Request) {
       const offset = (page - 1) * limit;
       const paginatedRecords = records.slice(offset, offset + limit);
 
-      const searchRecordsData = paginatedRecords.map(r => {
+      const searchRecordsData = paginatedRecords.map((r: EvaluationRecord) => {
         const date = new Date(r.created_at);
         const isValidDate = !isNaN(date.getTime());
         return {
@@ -142,7 +142,7 @@ export async function GET(request: Request) {
     const offset = (page - 1) * limit;
     const paginatedRecords = records.slice(offset, offset + limit);
 
-    const recentRecords = paginatedRecords.map(r => {
+    const recentRecords = paginatedRecords.map((r: EvaluationRecord) => {
       const date = new Date(r.created_at);
       const isValidDate = !isNaN(date.getTime());
       return {

@@ -1,6 +1,24 @@
 import Database from 'better-sqlite3';
 import path from 'path';
 
+export interface EvaluationRecord {
+  id: number;
+  student_name: string;
+  question: string;
+  code: string;
+  understanding_score: number;
+  logic_score: number;
+  readability_score: number;
+  syntax_score: number;
+  total_score: number;
+  level: string;
+  hint?: string;
+  practice?: string;
+  knowledge_points: string;
+  created_at: string;
+  knowledgePoints?: string[];
+}
+
 const dbPath = path.resolve(process.cwd(), './data/evaluations.db');
 const db = new Database(dbPath);
 
