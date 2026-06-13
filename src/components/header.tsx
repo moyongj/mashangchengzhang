@@ -31,7 +31,7 @@ export function Header() {
           <div className="flex items-center gap-2">
             <span className="text-lg font-bold text-foreground">码上成长</span>
             <span className="hidden rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground sm:inline-block">
-              Python代码智能评价与学情诊断助手
+              Python代码智能评价与学情诊断AI智能体
             </span>
           </div>
         </Link>
