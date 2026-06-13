@@ -89,7 +89,7 @@ export async function GET(request: Request) {
           title: (r.question?.length > 20 ? r.question.substring(0, 20) + '...' : r.question) || '无标题',
           score: r.total_score || 0,
           level: r.level || '待提升',
-          kp: (r.knowledgePoints?.length > 0 ? r.knowledgePoints[0] : '无') || '无',
+          kp: ((r.knowledgePoints && r.knowledgePoints.length > 0) ? r.knowledgePoints[0] : '无') || '无',
           time: isValidDate ? date.toLocaleString('zh-CN') : '未知时间',
         };
       });
