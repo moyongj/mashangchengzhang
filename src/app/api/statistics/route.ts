@@ -150,16 +150,16 @@ export async function GET(request: Request) {
         title: (r.question?.length > 20 ? r.question.substring(0, 20) + '...' : r.question) || '无标题',
         score: r.total_score || 0,
         level: r.level || '待提升',
-        kp: (r.knowledgePoints?.length > 0 ? r.knowledgePoints[0] : '无') || '无',
+        kp: ((r.knowledgePoints && r.knowledgePoints.length > 0) ? r.knowledgePoints[0] : '无') || '无',
         time: isValidDate ? date.toLocaleString('zh-CN') : '未知时间',
       };
     });
 
     const dimensionStats = records.length > 0 ? {
-      understanding: Math.round(records.reduce((sum, r) => sum + (r.understanding_score || 0), 0) / records.length),
-      logic: Math.round(records.reduce((sum, r) => sum + (r.logic_score || 0), 0) / records.length),
-      readability: Math.round(records.reduce((sum, r) => sum + (r.readability_score || 0), 0) / records.length),
-      syntax: Math.round(records.reduce((sum, r) => sum + (r.syntax_score || 0), 0) / records.length),
+      understanding: Math.round(records.reduce((sum: number, r: EvaluationRecord) => sum + (r.understanding_score || 0), 0) / records.length),
+      logic: Math.round(records.reduce((sum: number, r: EvaluationRecord) => sum + (r.logic_score || 0), 0) / records.length),
+      readability: Math.round(records.reduce((sum: number, r: EvaluationRecord) => sum + (r.readability_score || 0), 0) / records.length),
+      syntax: Math.round(records.reduce((sum: number, r: EvaluationRecord) => sum + (r.syntax_score || 0), 0) / records.length),
     } : { understanding: 0, logic: 0, readability: 0, syntax: 0 };
 
     return NextResponse.json({
